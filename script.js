@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
         data.HbA1c_level = parseFloat(data.HbA1c_level);
         data.blood_glucose_level = parseFloat(data.blood_glucose_level);
 
-        fetch('/predict', {
+        fetch('https://sugarsageapi-6bdf53d39be8.herokuapp.com/predict', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data),
@@ -111,7 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
         userInput.value = ''; // Clear input field
 
         // Send message to server
-        fetch('/chatbot', {
+        fetch('https://sugarsageapi-6bdf53d39be8.herokuapp.com//chatbot', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ user_input: message }),
