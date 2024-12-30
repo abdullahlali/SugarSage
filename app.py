@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 import numpy as np
 import joblib
 from textblob import TextBlob
@@ -6,9 +7,9 @@ from saveModel import preprocess_text  # Reuse preprocessing from saveModel.py
 from predictions import predict_diabetes_probability  # Import prediction logic
 from sklearn.metrics.pairwise import cosine_similarity
 import requests
-
 import os
 import nltk
+
 nltk.download('punkt_tab')
 
 # Function to use LanguageTool API for grammar checking and return corrected text
@@ -69,14 +70,9 @@ def download_nltk_data():
 # Download necessary resources if not already present
 download_nltk_data()
 
-# Create the Flask app
-from flask import Flask, render_template
+app = Flask(__name__)
+CORS(app)
 
-app = Flask(__name__, static_folder="static", template_folder="templates")
-
-@app.route('/')
-def home():
-    return render_template('index.html')
 
 # Load saved model and vectorizer
 model = joblib.load('model.pkl')
