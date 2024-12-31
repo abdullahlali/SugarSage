@@ -128,8 +128,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 typingIndicator.remove();
     
                 // Append server response
-                chatbox.innerHTML += `<p><strong>SugarSage:</strong> ${data.response}</p>`;
-                chatbox.scrollTop = chatbox.scrollHeight; // Auto-scroll to the bottom
+                // Check for "end" command
+                if (message.toLowerCase() != "end") {
+                    chatbox.innerHTML += `<p><strong>SugarSage:</strong> ${data.response}</p>`;
+                    chatbox.scrollTop = chatbox.scrollHeight; // Auto-scroll to the bottom
+                }
+                
     
                 // Check for "end" command
                 if (message.toLowerCase() === "end") {
