@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SugarSage</title>
-    <link rel="icon" type="image/svg+xml" href="sugarsage-website/assets/heart-predict.png">
+    <link rel="icon" type="image/svg+xml" href="https://abdullahlali.github.io/SugarSage/assets/heart-predict.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
@@ -37,6 +37,37 @@
             50% { transform: scale(1.1); }
             100% { transform: scale(1); }
         }
+
+        .dots span {
+            display: inline-block;
+            animation: blink 1.5s infinite;
+        }
+
+        .dots span:nth-child(1) {
+            animation-delay: 0s;
+        }
+
+        .dots span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .dots span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes blink {
+            0%, 20% {
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+
+
 
         .button-container {
             display: flex; /* Use Flexbox to align items horizontally */
@@ -182,7 +213,7 @@
 
         <!-- Right Section -->
         <div class="bg-[#8D097D] flex justify-center items-center relative">
-            <img src="sugarsage-website/assets/heart.png" alt="Heart" class="loading-heart w-3/5">
+            <img src="https://abdullahlali.github.io/SugarSage/assets/heart.png" alt="Heart" class="loading-heart w-3/5">
         </div>
     </div>
 
@@ -264,7 +295,7 @@
         <div class="w-full max-w-xs mx-auto">
             <!-- Heart Container -->
             <div id="heart-container" class="relative w-36 h-36 mx-auto">
-                <img src="sugarsage-website/assets/heart-predict.png" alt="Heart" class="w-full h-full object-cover">
+                <img src="https://abdullahlali.github.io/SugarSage/assets/heart-predict.png" alt="Heart" class="w-full h-full object-cover">
                 <div id="heart-mask" class="absolute top-0 left-0 w-full h-full"></div>
             </div>
 
@@ -303,7 +334,7 @@
     <!-- Back to Top Button -->
     <div id="back-to-top">↑</div>
     
-    <script src="/static/script.js"></script>
+    <script src="script.js"></script>
 
     <script>
         document.getElementById("go-to-chatbot").addEventListener("click", () => {
