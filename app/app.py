@@ -73,6 +73,12 @@ download_nltk_data()
 app = Flask(__name__)
 CORS(app)
 
+from flask import abort
+
+@app.route('/')
+def index():
+    abort(404)  # Returns a 404 error for the root route
+
 
 # Load saved model and vectorizer
 model = joblib.load('model.pkl')
