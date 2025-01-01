@@ -32,11 +32,26 @@
             100% { opacity: 1; transform: translateY(0); }
         }
 
+        /* Heart Loading Animation */
         @keyframes heartLoading {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
+            0% {
+                transform: scale(1);
+                opacity: 0.8;
+            }
+            50% {
+                transform: scale(1.1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 0.8;
+            }
         }
+
+        .loading-heart {
+            animation: heartLoading 1.5s infinite ease-in-out;
+        }
+
 
         .dots span {
             display: inline-block;
