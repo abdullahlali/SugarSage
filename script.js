@@ -143,7 +143,7 @@ document.addEventListener('DOMContentLoaded', () => {
             .catch(error => {
                 console.error('Error:', error);
                 typingIndicator.remove();
-                chatbox.innerHTML += `<p><strong>Error:</strong> Unable to get a response from the server.</p>`;
+                chatbox.innerHTML += `<p><strong>Error:</strong> Unable to get a response from the server right now.</p>`;
                 chatbox.scrollTop = chatbox.scrollHeight; // Auto-scroll to the bottom
             });
     });
