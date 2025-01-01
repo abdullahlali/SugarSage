@@ -214,7 +214,6 @@
         }
 
 
-
     </style>
 </head>
 <body class="bg-bg-[rgba(255, 255, 255, 0.4)]">
@@ -225,7 +224,7 @@
     <div class="bg-white flex flex-col justify-center items-center p-8">
         <h1 class="text-5xl font-bold text-[#8D097D] fade-in">SugarSage</h1>
         <p class="text-gray-500 text-lg mt-4 fade-in text-center">A Diabetes Prediction and Information Chatbot</p>
-        
+
         <!-- Button Container to hold both buttons side by side -->
         <div class="button-container mt-8">
             <button id="go-to-chatbot" class="scroll-button bg-[#8D097D] fade-in">
@@ -346,7 +345,8 @@
             <h2 class="text-3xl font-bold text-[#8D097D] mb-6 text-center">SugarSage - Diabetes Info Chatbot</h2>
             <div id="chatbox" class="bg-white p-4 rounded-lg shadow-md mb-4 h-60 overflow-y-auto">SugarSage: Welcome! Ask me anything about diabetes or related information.</div>
             <form id="chatbot-form" class="flex items-center max-w-3xl mx-auto">
-                <input type="text" id="user-input" placeholder="Ask me anything..." required
+                <input type="text" id="user-input" placeholder="Ask me anything..." required 
+                       autocomplete="off"
                        class="flex-grow border-gray-300 rounded-l-md focus:ring-[#8D097D] focus:border-[#8D097D] px-4 py-2">
                 <button type="submit" id="send-button"
                     class="bg-[#8D097D] text-white px-6 py-2 rounded-r-md hover:bg-[#A61190] transition-all">
