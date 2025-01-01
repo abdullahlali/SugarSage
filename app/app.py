@@ -7,10 +7,6 @@ from saveModel import preprocess_text  # Reuse preprocessing from saveModel.py
 from predictions import predict_diabetes_probability  # Import prediction logic
 from sklearn.metrics.pairwise import cosine_similarity
 import requests
-import os
-import nltk
-
-nltk.download('punkt_tab')
 
 # Function to use LanguageTool API for grammar checking and return corrected text
 def check_grammar_and_correct(text):
@@ -47,28 +43,6 @@ def check_grammar_and_correct(text):
     else:
         print(f"Error: {response.status_code}")
         return text  # Return original text if there's an error
-
-# Set the directory for NLTK data (preferably /tmp on Heroku)
-nltk_data_dir = os.getenv('NLTK_DATA', '/tmp/nltk_data')
-
-# Ensure the directory exists only once (to avoid multiple downloads in different requests)
-if not os.path.exists(nltk_data_dir):
-    os.makedirs(nltk_data_dir)
-
-# Add the path to NLTK's data directory
-nltk.data.path.append(nltk_data_dir)
-
-# Check if necessary NLTK data resources exist before downloading them
-def download_nltk_data():
-    resources = ['punkt_tab', 'stopwords', 'wordnet', 'omw-1.4']
-    for resource in resources:
-        try:
-            nltk.data.find(f'tokenizers/{resource}')
-        except LookupError:
-            nltk.download(resource, download_dir=nltk_data_dir)
-
-# Download necessary resources if not already present
-download_nltk_data()
 
 app = Flask(__name__)
 CORS(app)
@@ -116,7 +90,7 @@ def chatbot():
 
     # Check confidence level and determine response
     if confidence_level < 0.5:
-        response = "I'm sorry, I couldn't find an answer. Please contact abdullahliaqat.dev@gmail.com."
+        response = "I’m sorry, I couldn't find a clear answer. Could you please provide more details or clarify your question? I’ll do my best to assist you!"
     else:
         response = predicted_response  # Predict the response
 
@@ -135,11 +109,11 @@ def sentiment_analysis():
     polarity = sentiment.polarity
 
     if polarity > 0:
-        message = "Thank you! We're glad you found the conversation helpful."
+        message = "Thank you! I'm glad you found the conversation helpful."
     elif polarity < 0:
-        message = "We're sorry the experience wasn't satisfactory. Please share suggestions for improvement."
+        message = "I'm sorry the experience wasn't satisfactory. Please share suggestions for improvement."
     else:
-        message = "Thank you for your feedback! We appreciate your input."
+        message = "Thank you for your feedback! I appreciate your input."
 
     return jsonify({
         'polarity': polarity,
