@@ -68,7 +68,6 @@
         }
 
 
-
         .button-container {
             display: flex; /* Use Flexbox to align items horizontally */
             justify-content: space-between; /* Ensure space between buttons */
@@ -188,6 +187,17 @@
         #chatbot-section.visible {
             opacity: 1;
         }
+
+        footer {
+            border-top: 1px solid rgba(255, 255, 255, 0.2); /* Optional border for separation */
+        }
+
+        footer p {
+            margin: 0 auto;
+            max-width: 800px; /* Limit width for better readability */
+            line-height: 1.6; /* Improve readability with adequate spacing */
+        }
+
 
 
     </style>
@@ -330,6 +340,17 @@
             </form>
         </div>
     </div>
+
+
+    <!-- Footer Section -->
+    <footer class="bg-[#8D097D] text-white py-4">
+        <div class="container mx-auto text-center text-sm">
+            <p>
+                <strong>Disclaimer:</strong> This website provides general information and predictions based on input data. It is not a substitute for professional medical advice, diagnosis, or treatment.
+            </p>
+            <!-- <p class="mt-2 text-gray-300 text-xs">© 2025 SugarSage. All rights reserved.</p> -->
+        </div>
+    </footer>
 
     <!-- Back to Top Button -->
     <div id="back-to-top">↑</div>
