@@ -75,7 +75,7 @@ SugarSage is a dedicated web-based application combining predictive analytics an
 ### Steps:
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/SugarSage.git
+   git clone https://github.com/abdullahlali/SugarSage.git
    cd SugarSage
    ```
 2. Install dependencies:
