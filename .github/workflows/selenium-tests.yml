@@ -20,50 +20,49 @@ jobs:
       with:
         python-version: '3.x'
         
+    - name: Debug Python and pip
+      run: |
+        python --version
+        pip --version
+        
     - name: Install Chrome
       run: |
         wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
         sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
         sudo apt-get update
         sudo apt-get install google-chrome-stable
+        google-chrome --version
         
     - name: Install ChromeDriver
       run: |
-        CHROME_VERSION=$(google-chrome --version | awk '{print $3}' | cut -d '.' -f1)
-        echo "Detected Chrome version: $CHROME_VERSION"
+        CHROME_VERSION=$(google-chrome --version | cut -d ' ' -f3 | cut -d '.' -f1)
         CHROMEDRIVER_VERSION=$(curl -s "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_$CHROME_VERSION")
-        echo "Installing ChromeDriver version: $CHROMEDRIVER_VERSION"
+        echo "Chrome Version: $CHROME_VERSION"
+        echo "ChromeDriver Version: $CHROMEDRIVER_VERSION"
         wget -q "https://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip"
         unzip chromedriver_linux64.zip
         sudo mv chromedriver /usr/local/bin/
         sudo chmod +x /usr/local/bin/chromedriver
-
-    - name: Add Chromedriver to PATH
-      run: echo "$(pwd)" >> $GITHUB_PATH
-
-
-    - name: Verify Chrome and ChromeDriver installation
-      run: |
-        which google-chrome || echo "Chrome not found!"
-        which chromedriver || echo "Chromedriver not found!"
-        google-chrome --version
         chromedriver --version
-
-
-
-
         
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
         pip install selenium pytest
+        pip freeze | grep selenium
+        pip freeze | grep pytest
         
-    - name: Debug directory
+    - name: Debug directory structure
       run: |
+        echo "Current directory:"
         pwd
+        echo "\nDirectory contents:"
         ls -la
+        echo "\nTests directory contents:"
         ls -la tests/
+        echo "\nTest file contents:"
+        cat tests/test_selenium.py
         
-    - name: Run Selenium tests
+    - name: Run Selenium tests with debug
       run: |
-        python -m pytest tests/test_selenium.py -v --tb=long
+        python -m pytest tests/test_selenium.py -v --tb=long --capture=no
