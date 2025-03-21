@@ -12,7 +12,7 @@ class TestSugarSageWebsite(unittest.TestCase):
         chrome_options.add_argument('--no-sandbox')
         chrome_options.add_argument('--disable-dev-shm-usage')
         self.driver = webdriver.Chrome(options=chrome_options)
-        self.driver.get("https://sugarsage.github.io/")  # Replace with your actual GitHub Pages URL
+        self.driver.get("https://abdullahlali.github.io/SugarSage/")  # Replace with your actual GitHub Pages URL
         
     def tearDown(self):
         self.driver.quit()
