@@ -68,4 +68,4 @@ jobs:
         export PYTHONPATH=$PYTHONPATH:$(pwd)
         python -c "import sys; print(sys.path)"
         python -c "import selenium; print('Selenium version:', selenium.__version__)"
-        pytest tests/test_selenium.py -v --tb=long --capture=tee-sys
+        python -m pytest tests/test_selenium.py -v --full-trace --showlocals --verbose --log-cli-level=DEBUG
