@@ -18,12 +18,13 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
-        python-version: '3.x'
+        python-version: '3.9'
         
     - name: Debug Python and pip
       run: |
         python --version
         pip --version
+        which python
         
     - name: Install Chrome
       run: |
@@ -48,21 +49,23 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install selenium pytest
-        pip freeze | grep selenium
-        pip freeze | grep pytest
+        pip install selenium==4.9.1 pytest pytest-selenium webdriver-manager
+        pip freeze
         
     - name: Debug directory structure
       run: |
         echo "Current directory:"
         pwd
-        echo "\nDirectory contents:"
+        echo "Directory contents:"
         ls -la
-        echo "\nTests directory contents:"
+        echo "Tests directory contents:"
         ls -la tests/
-        echo "\nTest file contents:"
+        echo "Test file contents:"
         cat tests/test_selenium.py
         
     - name: Run Selenium tests with debug
       run: |
-        python -m pytest tests/test_selenium.py -v --tb=long --capture=no
+        export PYTHONPATH=$PYTHONPATH:$(pwd)
+        python -c "import sys; print(sys.path)"
+        python -c "import selenium; print('Selenium version:', selenium.__version__)"
+        pytest tests/test_selenium.py -v --tb=long --capture=tee-sys
