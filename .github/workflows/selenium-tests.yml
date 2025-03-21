@@ -29,12 +29,29 @@ jobs:
         
     - name: Install ChromeDriver
       run: |
-        CHROME_VERSION=$(google-chrome --version | cut -d ' ' -f3 | cut -d '.' -f1)
+        CHROME_VERSION=$(google-chrome --version | awk '{print $3}' | cut -d '.' -f1)
+        echo "Detected Chrome version: $CHROME_VERSION"
         CHROMEDRIVER_VERSION=$(curl -s "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_$CHROME_VERSION")
+        echo "Installing ChromeDriver version: $CHROMEDRIVER_VERSION"
         wget -q "https://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip"
         unzip chromedriver_linux64.zip
         sudo mv chromedriver /usr/local/bin/
         sudo chmod +x /usr/local/bin/chromedriver
+
+    - name: Add Chromedriver to PATH
+      run: echo "$(pwd)" >> $GITHUB_PATH
+
+
+    - name: Verify Chrome and ChromeDriver installation
+      run: |
+        which google-chrome || echo "Chrome not found!"
+        which chromedriver || echo "Chromedriver not found!"
+        google-chrome --version
+        chromedriver --version
+
+
+
+
         
     - name: Install dependencies
       run: |
