@@ -41,5 +41,12 @@ jobs:
         python -m pip install --upgrade pip
         pip install selenium pytest
         
+    - name: Debug directory
+      run: |
+        pwd
+        ls -la
+        ls -la tests/
+        
     - name: Run Selenium tests
-      run: python -m pytest tests/test_selenium.py -v
+      run: |
+        python -m pytest tests/test_selenium.py -v --tb=long
