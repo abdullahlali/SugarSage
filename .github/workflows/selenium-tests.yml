@@ -26,10 +26,13 @@ jobs:
         sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
         sudo apt-get update
         sudo apt-get install google-chrome-stable
+
+    - name: Set up Chrome
+      uses: browser-actions/setup-chrome@latest
         
     - name: Install ChromeDriver
       run: |
-        CHROME_VERSION=$(google-chrome --version | cut -d ' ' -f3 | cut -d '.' -f1)
+        CHROME_VERSION="113"
         CHROMEDRIVER_VERSION=$(curl -s "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_$CHROME_VERSION")
         wget -q "https://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip"
         unzip chromedriver_linux64.zip
