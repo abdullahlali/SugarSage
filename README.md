@@ -2,6 +2,11 @@
 
 SugarSage is a full-stack web application designed to provide real-time diabetes risk prediction and an AI-powered chatbot for answering diabetes-related queries. The project leverages machine learning, natural language processing (NLP), and web technologies to create an intuitive and data-driven platform for health insights.
 
+## 📸 Diagram
+
+![SugarSage Screenshot](assets/screenshot.png)
+
+
 ## 🔥 Key Features
 
 - **Diabetes Prediction Model**: Built using regression analysis on Kaggle diabetes datasets, leveraging Scikit-Learn for predictive modeling.
